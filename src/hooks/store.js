@@ -19,10 +19,17 @@ const issueStore = create(
         IssueData: SampleData, //state
         setIssueData: (newIssue) =>
           set((state) => ({ IssueData: [...state.IssueData, newIssue] })),
-        resetUserInfo: () => {
-          set((state) => ({ userInfo: null }));
-          sessionStorage.removeItem('login-storage');
-        },
+        delIssue: (delId) =>
+          set((state) => ({
+            IssueData: state.IssueData.filter((item) => item.id !== delId),
+          })),
+        updateIssueData: (delId, newIssue) =>
+          set((state) => ({
+            IssueData: [
+              ...get().IssueData.filter((item) => item.id !== delId),
+              newIssue,
+            ],
+          })),
       }),
       {
         name: 'issue-storage', // name of item in the storage (must be unique)

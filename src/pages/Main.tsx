@@ -8,7 +8,7 @@ export interface IIssue {
   id: number; // 고유번호
   title: string; // 제목
   content: string; // 내용
-  deadDate: number; //마감일
+  deadDate: number | string; //마감일
   status: number; // 상태
   who: string;
 }
@@ -34,23 +34,18 @@ export const issueProcess: IIssueProcess[] = [
 ];
 
 const Home = () => {
-  const { IssueData } = issueStore();
-  console.log('🚀 ~ file: Main.tsx:38 ~ Home ~ IssueData', IssueData);
-
   return (
     <div className="flex h-screen items-start bg-sub p-4">
       <div className="flex justify-around w-full">
-        {issueProcess.map((item) => {
-          const selectIssue = IssueData.filter(
-            (issue: IIssue) => item.id === issue.status
-          );
-          // console.log('selectIssue', item.id, selectIssue);
-          return (
-            <div key={item.id}>
-              <Book item={item} issue={selectIssue} />
-            </div>
-          );
-        })}
+        {issueProcess &&
+          issueProcess.map((item) => {
+            // console.log('selectIssue', item.id, selectIssue);
+            return (
+              <div key={item.id}>
+                <Book item={item} />
+              </div>
+            );
+          })}
       </div>
     </div>
   );
