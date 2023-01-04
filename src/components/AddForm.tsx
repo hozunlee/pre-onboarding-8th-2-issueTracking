@@ -65,7 +65,7 @@ const AddForm = ({ onSubmit, edit }: IProps) => {
     }
   }, []);
 
-  const BUTTONDISABLED = newWho && newStatus;
+  const BUTTONDISABLED = newWho && newStatus >= 0;
   return (
     <div className="flex flex-col m-10">
       {edit ? (

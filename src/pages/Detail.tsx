@@ -6,7 +6,7 @@ import { issueStore } from '../hooks/store';
 import AddForm from '../components/AddForm';
 import { IIssue } from './Main';
 
-const TYPE = ['', '할 일', '진행 중', '완료'];
+const TYPE = ['할 일', '진행 중', '완료'];
 
 const Detail = () => {
   const { delIssue, updateIssueData } = issueStore();
