@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 const Nav = () => {
   return (
     <nav className=" bg-main">
@@ -19,6 +21,8 @@ const Nav = () => {
             >
               Sign up
             </a> */}
+            <Link to={'/'}>Home</Link>
+            <Link to={'/add'}>이슈추가</Link>
           </div>
         </div>
       </div>
