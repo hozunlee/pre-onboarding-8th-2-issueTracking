@@ -1,7 +1,6 @@
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useReducer, useState } from 'react';
 
-import StatusBox from '../components/StatusBox';
 import { issueStore } from '../hooks/store';
 import AddForm from '../components/AddForm';
 import { IIssue } from './Main';
@@ -16,7 +15,6 @@ const Detail = () => {
   const [isEditing, toggleEditing] = useReducer((pre) => !pre, false);
 
   const onSubmit = (newIssue: IIssue) => {
-    console.log('newIssue :>> ', newIssue);
     updateIssueData(newIssue.id, newIssue);
     setMark(newIssue);
     toggleEditing();

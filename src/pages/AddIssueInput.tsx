@@ -11,7 +11,6 @@ const AddIssueInput = () => {
 
   const { setIssueData } = issueStore();
   const onSubmit = (newIssue: IIssue) => {
-    console.log('newIssue :>> ', newIssue);
     setIssueData(newIssue);
     navigate('/');
   };

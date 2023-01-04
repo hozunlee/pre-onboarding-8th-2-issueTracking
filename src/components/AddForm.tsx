@@ -2,20 +2,19 @@ import { useRef, useState, useEffect } from 'react';
 import { issueStore } from '../hooks/store';
 
 import { issueProcess } from '../pages/Main';
-import StatusBox from './StatusBox';
 
 const whoList = ['이호준', '이혜미', ' 김별이', '김만중', '이호열'];
 
 interface IProps {
   onSubmit: any;
-  edit: any;
-  toggleEditing: any;
+  edit?: any;
+  toggleEditing?: any;
 }
 
 const AddForm = ({ onSubmit, edit }: IProps) => {
   const { IssueData } = issueStore();
 
-  const idRef = useRef<number>(null);
+  const idRef = useRef<HTMLInputElement>(null);
   const titleRef = useRef<HTMLInputElement>(null);
   const contentRef = useRef<HTMLTextAreaElement>(null);
   const dateRef = useRef<HTMLInputElement>(null);
