@@ -11,18 +11,18 @@ const AddIssueInput = () => {
   const { setIssueData, IssueData } = issueStore();
 
   const navigate = useNavigate();
-  const titleRef = useRef(null);
-  const contentRef = useRef(null);
-  const dateRef = useRef(null);
+  const titleRef = useRef<HTMLInputElement>(null);
+  const contentRef = useRef<HTMLTextAreaElement>(null);
+  const dateRef = useRef<HTMLInputElement>(null);
 
-  const [whoKeyword, setWhoKeyword] = useState<string>('');
-  const [newWho, setNewWho] = useState();
-  const [newStatus, setNewStatus] = useState();
+  const [whoKeyword, setWhoKeyword] = useState<string[]>([]);
+  const [newWho, setNewWho] = useState<string>();
+  const [newStatus, setNewStatus] = useState<number>();
 
   const BUTTONDISABLED = newWho && newStatus;
 
   const onChangeData = (e: React.FormEvent<HTMLInputElement>) => {
-    const keyword = e.target.value;
+    const keyword = e.currentTarget.value;
     if (keyword.length >= 2) {
       const temp = whoList.filter((who) => who.toLowerCase().includes(keyword));
       setWhoKeyword(temp);
@@ -30,16 +30,19 @@ const AddIssueInput = () => {
     // setWhoKeyword(e.currentTarget.value);
   };
 
-  const onSubmit = (e: React.FormEvent<HTMLInputElement>) => {
-    e.preventDefault();
-    const newIssue = {
-      id: IssueData.length ? IssueData[IssueData.length - 1].id + 1 : 0,
-      title: titleRef.current?.value,
-      content: contentRef.current?.value,
-      deadDate: dateRef.current?.value,
-      who: newWho,
-      status: Number(newStatus),
-    };
+  const onSubmit = () => {
+    let newIssue = {};
+    if (titleRef.current) {
+      newIssue = {
+        id: IssueData.length ? IssueData[IssueData.length - 1].id + 1 : 0,
+        title: titleRef?.current?.value,
+        content: contentRef?.current?.value,
+        deadDate: dateRef?.current?.value,
+        who: newWho,
+        status: newStatus,
+      };
+    }
+
     console.log('newIssue :>> ', newIssue);
     setIssueData(newIssue);
     // onSubmitHandler(inputRef.current?.value);
@@ -91,7 +94,7 @@ const AddIssueInput = () => {
         </select>
         <select
           onChange={(e) => {
-            setNewStatus(e.target.value);
+            setNewStatus(Number(e.target.value));
           }}
         >
           <option value="">상태를 선택하세요</option>
