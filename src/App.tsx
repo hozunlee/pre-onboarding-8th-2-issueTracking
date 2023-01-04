@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import About from './components/About';
+import Nav from './components/Nav';
+import Home from './pages/Main';
 
 function App() {
   const [count, setCount] = useState(0);
@@ -9,13 +10,13 @@ function App() {
   };
 
   return (
-    <div className="App">
-      하이
-      <button type="button" onClick={increaseCount}>
-        gㅏ이
-      </button>
-      {count}
-      <About count={count} />
+    <div className="h-screen w-full overflow-y-hidden overflow-x-scroll">
+      <header>
+        <Nav />
+      </header>
+      <main>
+        <Home />
+      </main>
     </div>
   );
 }
