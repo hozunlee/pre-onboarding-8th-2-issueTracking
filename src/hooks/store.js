@@ -3,7 +3,7 @@ import { devtools, persist } from 'zustand/middleware';
 
 const SampleData = [
   {
-    id: 1, // 고유번호
+    id: 0, // 고유번호
     title: 'Title', // 제목
     content: 'ddd', // 내용
     deadDate: '2022-01-06', //마감일
@@ -17,7 +17,8 @@ const issueStore = create(
     persist(
       (set, get) => ({
         IssueData: SampleData, //state
-        setIssueData: (input) => set({ userInfo: input }),
+        setIssueData: (newIssue) =>
+          set((state) => ({ IssueData: [...state.IssueData, newIssue] })),
         resetUserInfo: () => {
           set((state) => ({ userInfo: null }));
           sessionStorage.removeItem('login-storage');
